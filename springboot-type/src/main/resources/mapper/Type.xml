@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fh.mapper.TypeMapper">
+
+    <select id="queryTypeList" parameterType="com.fh.po.Type" resultType="com.fh.po.Type">
+        select t.* from (select id,genre from a_type
+        order by id desc) t
+        limit #{start},#{length}
+    </select>
+
+    <select id="findTypeTotalCount" resultType="long">
+        select count(*) from a_type
+    </select>
+
+    <insert id="addType" parameterType="com.fh.po.Type">
+        insert into a_type (id,genre) values (#{id},#{genre})
+    </insert>
+
+    <delete id="deleteType" parameterType="int">
+        delete from a_type where id=#{v}
+    </delete>
+
+    <select id="toUpdateType" parameterType="int" resultType="com.fh.po.Type">
+        select id,genre from a_type where id = #{id}
+    </select>
+
+    <update id="updateType">
+        update a_type set id=#{id},genre = #{genre} where id = #{id}
+    </update>
+
+    <select id="findById" parameterType="int" resultType="com.fh.po.Type">
+        select id,genre from a_type where id = #{id}
+    </select>
+    <select id="findTypeList" resultType="com.fh.po.Type" parameterType="com.fh.po.Type">
+        select id,genre from a_type
+    </select>
+
+</mapper>

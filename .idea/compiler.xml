@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="eureka-server" />
+        <module name="feign-type" />
+        <module name="springboot-city" />
+        <module name="springboot-duty" />
+        <module name="springboot-house" />
+        <module name="springboot-tag" />
+        <module name="springboot-tag-feign" />
+        <module name="springboot-type" />
+        <module name="springboot-zuul" />
+        <module name="springcloud-city-api" />
+        <module name="springcloud-salesman" />
+        <module name="webhouse" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="eureka-server1" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

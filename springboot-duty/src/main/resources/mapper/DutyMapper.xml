@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC
+    "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fh.mapper.DutyMapper">
+    <select id="queryAllDuty" resultType="com.fh.entity.Duty">
+        select * from group_duty
+    </select>
+
+    <select id="queryCharacterByAdminId" resultType="com.fh.entity.Character" parameterType="int">
+        select a.* from group_character a left join group_adminandcharacter b on a.characterId=b.characterId left join group_admin c on c.positionId=b.adminId where c.adminId=#{adminId}
+    </select>
+
+    <select id="queryDutyByAdminId" resultType="com.fh.entity.Duty" parameterType="int">
+        select a.* from group_duty a left join group_characterandduty b on a.dutyId=b.dutyId left join group_character c on b.characterId=c.characterId left join group_adminandcharacter d on c.characterId=d.characterId left join group_admin e on d.adminId=e.positionId where e.adminId=#{adminId}
+    </select>
+
+    <select id="selectAllAdmin" resultType="com.fh.entity.Admin">
+        select * from group_admin
+    </select>
+
+    <insert id="addAdmin" parameterType="com.fh.entity.Admin">
+        insert into group_admin (adminAccount,adminPassword,positionId) values (#{adminAccount},#{adminPassword},#{positionId})
+    </insert>
+
+    <select id="getAdminById" resultType="com.fh.entity.Admin" parameterType="int">
+        select * from group_admin where adminId=#{id}
+    </select>
+
+    <update id="updateAdmin" parameterType="com.fh.entity.Admin">
+        update group_admin set adminAccount=#{adminAccount},adminPassword=#{adminPassword},positionId=#{positionId} where adminId=#{adminId}
+    </update>
+</mapper>
+

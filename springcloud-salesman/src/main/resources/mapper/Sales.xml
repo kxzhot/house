@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fh.mapper.SalesMapper">
+
+    <select id="findSalesCount" resultType="long">
+        select count(*) from a_sales
+    </select>
+    <select id="findSalesList" resultType="com.fh.po.Sales">
+        select t.* from (select id,salesName,age,sex,phone,entryTime from a_sales
+        order by id desc ) t
+        limit #{start},#{length}
+    </select>
+    <insert id="addSales">
+        insert into a_sales (id,salesName,age,sex,phone,entryTime) value (#{id},#{salesName},#{age},#{sex},#{phone},#{entryTime})
+    </insert>
+    <delete id="deleteSales">
+        delete from a_sales where id=#{id}
+    </delete>
+    <select id="toUpdateSales" resultType="com.fh.po.Sales">
+        select id,salesName,age,sex,phone,entryTime from a_sales where id=#{id}
+    </select>
+    <update id="updateSales">
+        update a_sales set  id=#{id},salesName=#{salesName},age=#{age},sex=#{sex},phone=#{phone},entryTime=#{entryTime} where id=#{id}
+    </update>
+    <select id="findSalesById" resultType="com.fh.po.Sales">
+        select  id,salesName,age,sex,phone,entryTime a_sales where id = #{id}
+    </select>
+</mapper>

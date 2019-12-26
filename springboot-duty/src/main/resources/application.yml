@@ -1,0 +1,28 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:7000/eureka/
+
+server:
+  port: 8062
+spring:
+  application:
+    name: springcloud-admin
+  datasource:
+    url: jdbc:mysql://localhost:3306/house?characterEncoding=UTF-8&serverTimezone = GMT
+    username: root
+    password: kong
+    driver-class-name: com.mysql.cj.jdbc.Driver
+mybatis:
+  # \u91CD\u8981\u914D\u7F6E
+  type-aliases-package: com.cloud.springcloudapi.duty.entity
+  mapper-locations: mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+  # \u6253\u5370sql
+thymeleaf:
+  prefix: classpath:/templates/
+  suffix: .html
+  mode: HTML5
+  encoding: UTF-8
+  cache: false

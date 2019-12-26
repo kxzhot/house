@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/jquery-3.3.1.js"></script>
+</head>
+<script>
+    function login() {
+        var account = $("#account").val();
+        var password = $("#password").val();
+        if(account!=""){
+            if(password!=""){
+                $.ajax({
+                    url:"http://localhost:9999/api-api-admin/admin/login",
+                    type:"post",
+                    dataType:"text",
+                    data:{
+                        "adminAccount":account,
+                        "adminPassword":password
+                    },
+                    success:function (data) {
+                        //alert(data.toString());
+                        // window.sessionStorage.setItem("admin",strArr[0].adminId);
+                        window.sessionStorage.setItem("token",data.toString());
+                        getAdmin(data.toString());
+                    }
+                });
+            }else{
+                alert("请输入密码");
+            }
+        }else{
+            alert("请输入帐号")
+        }
+    }
+
+    function getAdmin(token) {
+        $.ajax({
+            url:"http://localhost:9999/api-api-admin/admin/getAdmin",
+            type:"post",
+            dataType:"json",
+            data:{"token":token},
+            beforeSend:function(xhr){
+                xhr.setRequestHeader("x-auth", token);
+            },
+            success:function (data) {
+                window.sessionStorage.setItem("admin",data.adminId);
+                location.href="index.html";
+            }
+        });
+    }
+</script>
+<body>
+    <form>
+        帐号:<input type="text" id="account"><br>
+        密码:<input type="text" id="password"><br>
+        <input type="button" onclick="login()" value="登陆">
+        <input type="reset">
+    </form>
+</body>
+</html>

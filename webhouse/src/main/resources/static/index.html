@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="js/nav3.js"></script>
+    <script type="text/javascript" src="js/ztree/js/jquery.ztree.core.min.js"></script>
+    <script type="text/javascript" src="js/ztree/js/jquery.ztree.excheck.min.js"></script>
+    <script type="text/javascript" src="js/ztree/js/jquery.ztree.exedit.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="js/ztree/css/zTreeStyle/zTreeStyle.css">
+</head>
+<script>
+    var adminId = window.sessionStorage.getItem("admin");
+    alert(adminId);
+    $(function () {
+        searchCharacter();
+    });
+
+    function searchCharacter() {
+        $.ajax({
+            url:"http://localhost:9999/api-api-admin/duty/queryCharacterByAdminId",
+            type:"post",
+            dataType:"json",
+            data:{"adminId":adminId},
+            success:function (data) {
+                var temp = "您当前的身份是:";
+                for(var i=0;i<data.length;i++){
+                    temp += data[i].characterName;
+                }
+                $("#setCharacter").html(temp);
+                queryPartDuty();
+            }
+        });
+    }
+
+    //var partDuty = "";
+    function queryPartDuty() {
+        $.ajax({
+            url: "http://localhost:9999/api-api-admin/duty/queryDutyByAdminId",
+            type: "post",
+            dataType: "json",
+            data: {"adminId":adminId},
+            success: function (partDuty) {
+                //partDuty = JSON.stringify(data);
+                queryAllDuty(partDuty)
+            }
+        });
+    };
+    function queryAllDuty(partDuty){
+        $.ajax({
+            url:"http://localhost:9999/api-api-admin/duty/queryAllDuty",
+            type:"get",
+            dataType:"json",
+            success:function (data) {
+                var temp = "<ul>\n";
+                for(var i=0;i<data.length;i++){
+                    var isSame = false;
+                    for(var j=0;j<partDuty.length;j++){
+                        if(data[i].dutyId==partDuty[j].dutyId){
+                            var dutyUrl = data[i].dutyUrl;
+                            temp += "<ui><a onclick='dutyTo(\""+dutyUrl+"\")' style='color: #1aa5fb;text-decoration: none'>"+data[i].dutyDescribe+"</a></ui>\n";
+                            isSame = true;
+                        }
+                    }
+                    if(isSame==false){
+                        temp += "<ui><a onclick='noDuty()' style='color: #1aa5fb'>"+data[i].dutyDescribe+"</a></ui>\n";
+                    }
+                }
+                temp += "</ul>";
+                $("#test1").html(temp);
+            }
+        });
+    };
+
+    function noDuty() {
+        alert("您没有该权限");
+    }
+
+    function dutyTo(dutyUrl) {
+        $.ajax({
+            url:"http://localhost:9999/api-api-admin/"+dutyUrl,
+            type:"post",
+            dataType:"text",
+            data:{"dutyUrl":dutyUrl},
+            success:function (data) {
+                if(data=="api-a/duty/adminManage"){
+                    location.href="adminManage.html"
+                };
+            }
+        });
+    }
+</script>
+<body>
+    <div id="setCharacter"></div>
+    <div id="test1"></div>
+    <ul id="test" class="ztree"></ul>
+</body>
+</html>

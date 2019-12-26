@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/eureka-server" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/feign-type" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springboot-city" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springboot-duty" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springboot-house" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springboot-tag" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springboot-tag-feign" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springboot-type" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springboot-zuul" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springcloud-city-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springcloud-salesman" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/webhouse" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>
