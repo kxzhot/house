@@ -10,12 +10,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
   <head>
     <base href="<%=basePath%>">
-    
+
     <title>My JSP 'pager.jsp' starting page</title>
-    
+
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="expires" content="0">
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
 	<!--
@@ -33,40 +33,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        * 在页面中任何嵌套层次的窗口中获取顶层窗口
        * @return 当前页面的顶层窗口对象
        */
-$(function () {
-    getPresentUserResource();
-})
-      function loginOut(){
-          if(confirm("你确定要注销吗？")){
 
-              location.href="<%=request.getContextPath()%>/user/loginOut";
-          }
-      }
-      function getPresentUserResource(){
-          $.post(
-              "<%=request.getContextPath()%>/user/getPresentUserResource",
-              function (data) {
-                  console.log(data)
-                  var str="";
-                  if (data.status==200){
-                      var data=data.data;
-                      for (var i = 0; i <data.length ; i++) {
-                          if(data[i].rankType==1){
-                              str+='<li class="dropdown"><a href='+data[i].url+' class="dropdown-toggle" >'+data[i].name+'</a></li>';
-                          }
-                      }
-                      $("#topul").html(str);
-                  }
-              }
-          )
-      }
   </script>
   <body >
   <nav class="navbar navbar-inverse" role="navigation">
       <div class="container-fluid">
 
           <div class="navbar-header">
-              <a class="navbar-brand" href="<%=request.getContextPath()%>/m/list">电商管理系统</a>
+              <a class="navbar-brand" href="<%=request.getContextPath()%>/m/list">房屋管理系统</a>
           </div>
 
           <div style="height: 50px;">
@@ -90,5 +64,5 @@ $(function () {
 
   </nav>
   </body>
- 
+
 </html>

@@ -10,8 +10,10 @@
     <link rel="stylesheet" href="/js/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" >
     <link rel="stylesheet" href="/js/font-awesome-4.7.0/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/js/bootstrapvalidator-0.5.2/dist/css/bootstrapValidator.min.css">
+    <script type="text/javascript" src="/njs/topjs.js"></script>
 </head>
 <body>
+<div id="topppp"></div>
 <div class="container">
     <div class="row">
         <div style="background-color: #67e9f1">
@@ -104,13 +106,15 @@
             "destroy": true,
             "lengthMenu": [5, 10, 30, 50],
             "ajax": {
-                "url": "http://localhost:8040/tag/queryTagList",
+                "url": "http://localhost:9999/api-tag/tag/queryTagList",
                 "type": "POST",
                 "dataSrc":function (result) {
                     if (result.status == 200){
+
                         result.draw = result.data.draw;
                         result.recordsFiltered = result.data.recordsFiltered;
                         result.recordsTotal = result.data.recordsTotal;
+                        console.log(result.data.data);
                         return result.data.data;
                     }
                 }
@@ -145,7 +149,7 @@
                         var v_param = {};
                         v_param.tag = v_tag;
                         $.post({
-                            url: "http://localhost:8040/tag/addTag",
+                            url: "http://localhost:9999/api-tag/tag/addTag",
                             data: v_param
                         });
                         search();
@@ -163,7 +167,7 @@
     var v_tagUpdateDlg;
     function toUpdateTag(id) {
         $.post({
-            url: "http://localhost:8040/tag/toUpdateTag",
+            url: "http://localhost:9999/api-tag/tag/toUpdateTag",
             data: {"id": id},
             success: function (result) {
                 if (result.status == 200) {
@@ -178,7 +182,7 @@
                                 callback: function () {
                                     var update_tag = $("#update_tag", v_tagUpdateDlg).val();
                                     $.post({
-                                        url: "http://localhost:8040/tag/updateTag",
+                                        url: "http://localhost:9999/api-tag/tag/updateTag",
                                         data: {
                                             "id": id,
                                             "tag": update_tag
@@ -217,7 +221,7 @@
                 if (result) {
                     $.ajax({
                         type: "post",
-                        url: "http://localhost:8040/tag/deleteTag",
+                        url: "http://localhost:9999/api-tag/tag/deleteTag",
                         data: {"id": id},
                         success: function (result) {
                             if (result.status == 200) {
