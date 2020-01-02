@@ -2,16 +2,14 @@ package com.fh.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.fh.biz.TypeService;
-import com.fh.controller.CityService;
+import com.fh.controller.Citycontroller;
 import com.fh.mapper.HouseMapper;
 import com.fh.model.HouseInfo;
-import com.fh.ser.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class HouseServiceImpl implements  HouseService {
@@ -20,7 +18,7 @@ public class HouseServiceImpl implements  HouseService {
     @Autowired
     private TypeService typeService;
     @Autowired
-    private CityService cityService;
+    private Citycontroller cityService;
     @Autowired
     private TagService tagService;
 

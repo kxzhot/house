@@ -17,6 +17,7 @@
         <module>springboot-tag</module>
         <module>springboot-tag-feign</module>
         <module>springboot-type</module>
+        <module>springboot-type-feign</module>
         <module>springboot-zuul</module>
         <module>springcloud-city-api</module>
         <module>webhouse</module>

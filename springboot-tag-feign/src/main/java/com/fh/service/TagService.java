@@ -1,13 +1,16 @@
 package com.fh.service;
 
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.client.RestTemplate;
 
-@FeignClient(value = "springboot-tag")
-public interface TagService {
+public class TagService {
+    @Autowired
+    private RestTemplate restTemplate;
 
     //根据id查找
-    @RequestMapping(value = "/tag/queryTagById/{id}",method = RequestMethod.GET)
-    String queryTagById( Integer id);
+    @GetMapping("/tag/queryTagById/{id}")
+    String queryTagById( Integer id){
+        return restTemplate.getForObject("http://springboot-tag/tag/queryTagById/?id="+id, String.class);
+    }
 }
